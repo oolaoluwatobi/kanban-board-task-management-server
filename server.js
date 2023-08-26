@@ -6,7 +6,6 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOption')
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
-const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
@@ -21,7 +20,7 @@ app.use(logger);
 
 // handle credentials check before CORS!
 // and fetch cookies credentials requirement
-app.use(credentials);
+app.use(credentials); 
 
 // Cross Origin Resource Sharing
 app.use(cors(corsOptions));
@@ -37,18 +36,9 @@ app.use(cookieParser());
 
 // serve static files 
 // NB: app.use('^/$', ...) means it must start with a slash ^/, and end with a slash /$
-app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', require('./routes/root'));
-// app.use('/register', require('./routes/register'));
-app.use('/register', require('./routes/register'));
-app.use('/auth', require('./routes/auth'));
-app.use('/refresh', require('./routes/refresh'));
-app.use('/logout', require('./routes/logout'));
-
-app.use(verifyJWT)
-app.use('/employees', require('./routes/api/employees'));
-app.use('/users', require('./routes/api/users'));
+app.use('/tasks', require('./routes/api/tasks'));
 
 app.all('*', (req, res) => {
   res.status(404);
