@@ -1,29 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
     required: true,
   },
   status: {
-    ToDo: {
-      type: Boolean,
-      default: true
-    },
-    Doing: {
-      type: Boolean,
-      default: false
-    },
-    Done: {
-      type: Boolean,
-      default: false
-    },
-  }, 
+    type: String,
+    required: true,
+    enum: ['todo', 'doing', 'done'], // Restrict values to these three options
+    default: 'todo', // Set 'todo' as the default value
+  },
 });
 
-module.exports = mongoose.model('task', taskSchema);
+module.exports = mongoose.model("task", taskSchema);

@@ -23,7 +23,7 @@ const getAllTasks = async (req, res) => {
   
   //current page
   const page = req.query.p - 1 || 0;
-  const tasksPerPage = 5;
+  const tasksPerPage = 15;
 
   // let tasks = [];
   const tasks = await Task.find()
@@ -32,17 +32,17 @@ const getAllTasks = async (req, res) => {
   .limit(tasksPerPage);
   console.log(tasks, "21: tasksCont...")
   
-  if (!tasks) return res.status(204).json({ 'message': 'No tasks found.'});
+  if (!tasks) return res.status(204).json({ 'message': 'No tasks found.'});   
   
-  console.log(tasks, "27: tasksCont...")
+  console.log(tasks, "27: tasksCont...")       
 
   res.json(tasks); 
 }
-
-const updateTask = async (req, res) => {
+   
+const updateTask = async (req, res) => { 
   if (!req?.body?.id) {
     return res.status(400).json({ 'message': 'ID parameter is required.'});
-  }
+  } 
 
   const task = await Task.findOne({ _id: req.body.id }).exec();  
   if (!task) {
@@ -52,26 +52,41 @@ const updateTask = async (req, res) => {
   if (req.body?.description) task.description = req.body.description;
   if (req.body?.status) task.status = req.body.status;
   const result = await task.save();
-  res.json(result);
+  res.json(result); 
 }
 
+// const deleteTask = async (req, res) => {
+//   if (!req?.body?.id) {
+//     return res.status(400).json({ 'message': 'Task ID is required.'});
+//   }
+
+//   const task = await Task.findOne({ _id: req.body.id }).exec();  
+//   if (!task) {
+//     return res.status(204).json({ "message": `No Task matches ID ${req.body.id}.`});
+//   }
+//   const result = await task.deleteOne({ _id: req.body.id });
+//   res.json(result);
+// }
+
+  
 const deleteTask = async (req, res) => {
-  if (!req?.body?.id) {
+  console.log( req?.body, req?.params)
+  if (!req?.params?.id) {   
     return res.status(400).json({ 'message': 'Task ID is required.'});
   }
 
-  const task = await Task.findOne({ _id: req.body.id }).exec();  
+  const task = await Task.findOne({ _id: req.params.id }).exec();   
   if (!task) {
-    return res.status(204).json({ "message": `No Task matches ID ${req.body.id}.`});
+    return res.status(204).json({ "message": `No useer matches ID ${req.params.id}.`});
   }
-  const result = await task.deleteOne({ _id: req.body.id });
+  const result = await task.deleteOne({ _id: req.params.id });
   res.json(result);
 }
 
 const getTask = async (req, res) => {
   if (!req?.params?.id) {
     return res.status(400).json({ 'message': 'Task ID is required.'});
-  }
+  } 
 
   const task = await Task.findOne({ _id: req.params.id }).exec();  
   if (!task) {

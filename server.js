@@ -41,7 +41,7 @@ app.use('/', require('./routes/root'));
 app.use('/tasks', require('./routes/api/tasks'));
 
 app.all('*', (req, res) => {
-  res.status(404);
+  res.status(404); 
   if (req.accepts('html'))  {
     res.sendFile(path.join(__dirname, 'views', '404.html'))
   } else if (req.accepts('json'))  {
@@ -51,9 +51,9 @@ app.all('*', (req, res) => {
   }
 });
 
-app.use(errorHandler); 
+app.use(errorHandler);  
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
   app.listen(PORT, () => console.log(`Server running on port ${PORT} `));
-})
+})     
