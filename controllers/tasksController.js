@@ -11,7 +11,7 @@ const createNewTask = async (req, res) => {
       status
     });
 
-    console.log(result, "ln:14 taskController: result");
+    // console.log(result, "ln:14 taskController: result");
 
     res.status(201).json({ result: { title, description, status } });
   } catch (err) {
@@ -27,14 +27,14 @@ const getAllTasks = async (req, res) => {
 
   // let tasks = [];
   const tasks = await Task.find()
-  .sort({ title: 1 })
-  .skip(page * tasksPerPage)
-  .limit(tasksPerPage);
-  console.log(tasks, "21: tasksCont...")
+  // .sort({ title: 1 })
+  // .skip(page * tasksPerPage)
+  // .limit(tasksPerPage);
+  // console.log(tasks, "21: tasksCont...")
   
   if (!tasks) return res.status(204).json({ 'message': 'No tasks found.'});   
   
-  console.log(tasks, "27: tasksCont...")       
+  // console.log(tasks, "27: tasksCont...")       
 
   res.json(tasks); 
 }
@@ -70,7 +70,7 @@ const updateTask = async (req, res) => {
 
   
 const deleteTask = async (req, res) => {
-  console.log( req?.body, req?.params)
+  // console.log( req?.body, req?.params)
   if (!req?.params?.id) {   
     return res.status(400).json({ 'message': 'Task ID is required.'});
   }
