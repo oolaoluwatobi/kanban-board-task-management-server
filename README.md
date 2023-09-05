@@ -114,5 +114,5 @@ Contributions are welcomed from the community! If you encounter any issues or ha
 Thank you for using our backend with Node.js, Express, and MongoDB for contact management! We hope this implementation of the MVC pattern and RESTful API endpoints serves as a helpful reference for your projects. Happy contact management!
 ## Screenshots
 
-[App Screenshot](https://github.com/oolaoluwatobi/kanban-board-task-management-server/blob/main/server.png)
+![App Screenshot](https://github.com/oolaoluwatobi/kanban-board-task-management-server/blob/main/server.png)
 
