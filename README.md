@@ -112,7 +112,7 @@ Refer to the `tasks.js` file for detailed route definitions.
 Contributions are welcomed from the community! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or create a pull request.
 
 Thank you for using our backend with Node.js, Express, and MongoDB for contact management! We hope this implementation of the MVC pattern and RESTful API endpoints serves as a helpful reference for your projects. Happy contact management!
-## Screenshots
+## Screenshot
 
 ![App Screenshot](https://github.com/oolaoluwatobi/kanban-board-task-management-server/blob/main/server.png)
 
